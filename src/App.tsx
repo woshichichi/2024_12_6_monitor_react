@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import HikH5Player from './components/h5Player';
 
 const App: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
-
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
   const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/8dnHZn2';
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
