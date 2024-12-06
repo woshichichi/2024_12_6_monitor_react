@@ -29,6 +29,7 @@ const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
   const plugin = useRef<any>(null);
 
   useEffect(() => {
+    console.log('options', options);
     createPlugin(options.border ?? 'red');
   }, []);
 
