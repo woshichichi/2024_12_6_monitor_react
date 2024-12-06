@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import HikH5Player from './components/h5Player';
+import playerImg from './assets/player.png';
+
 
 const App: React.FC = () => {
   const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/8dnHZn2';
+  const [videoState, setVideoState] = useState<boolean>(false);
+  const togglePlay = () => {
+    setVideoState((prevState) => !prevState);
+  };
+
+
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h1>React + TypeScript Demo</h1>
@@ -46,24 +54,7 @@ const App: React.FC = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  monitorPreview({ uid: descriptions.uid })
-                    .then((response) => {
-                      if (response.data.manufacturer === 'GuangDa') {
-                        setVideoSrc(response.data.url);
-                        setCameraInfo(response.data);
-                        togglePlay();
-                      } else if (response.data.url && response.data.url.trim() !== '') {
-                        setVideoSrc(response.data.url);
-                        setCameraInfo(response.data);
-                        togglePlay();
-                      } else {
-                        message.error('暂无监控视频');
-                      }
-                    })
-                    .catch((error) => {
-                      console.error('获取视频信息失败:', error);
-                      // message.error("获取视频信息失败");
-                    });
+                  togglePlay();
                 }}
               />
               <span

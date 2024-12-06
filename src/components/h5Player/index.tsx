@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
-import './index.less'; // 将样式移到单独的CSS文件中
-import imgUrl from '@/assets/Frame.png';
+import './index.css'; // 将样式移到单独的CSS文件中
+import imgUrl from '../../assets/Frame.png';
 
 interface HikH5PlayerProps {
   options: {
