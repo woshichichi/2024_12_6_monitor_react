@@ -4,7 +4,7 @@ import playerImg from './assets/player.png';
 
 
 const App: React.FC = () => {
-  const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/8dnHZn2';
+  const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
   const [videoState, setVideoState] = useState<boolean>(false);
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
