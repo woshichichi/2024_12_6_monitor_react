@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import HikH5Player from './components/h5Player';
 import playerImg from './assets/player.png';
-import { monitorService } from './services/monitorService';
+import { getMonitorDetail } from './services/monitorService';
+
 const App: React.FC = () => {
   const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
   const [videoState, setVideoState] = useState<boolean>(false);
@@ -9,10 +10,9 @@ const App: React.FC = () => {
     setVideoState((prevState) => !prevState);
   };
 
-
-  const getMonitorDetail = async (id: number) => {
+  const requestMonitorDetail = async (id: number) => {
     try {
-      const response = await monitorService.getMonitor(id);
+      const response = await getMonitorDetail({ id });
       // 处理返回的数据
       console.log(response);
       // 可以设置到 state 中
@@ -64,7 +64,7 @@ const App: React.FC = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  getMonitorDetail(1);
+                  requestMonitorDetail(1);
                   togglePlay();
                 }}
               />
@@ -112,6 +112,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-
-
