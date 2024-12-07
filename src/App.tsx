@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HikH5Player from './components/h5Player';
 import playerImg from './assets/player.png';
 import { getMonitorDetail } from './services/monitorService';
@@ -9,6 +9,7 @@ const App: React.FC = () => {
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
   };
+  const [vehicleInfo, setVehicleInfo] = useState<any>(null);
 
   const requestMonitorDetail = async (id: number) => {
     try {
@@ -20,6 +21,19 @@ const App: React.FC = () => {
       console.error('获取监控详情失败:', error);
     }
   };
+  useEffect(() => {
+    // 从 URL 中解析参数
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get('data');
+    if (data) {
+      try {
+        const parsedData = JSON.parse(decodeURIComponent(data));
+        setVehicleInfo(parsedData);
+      } catch (error) {
+        console.error('解析数据失败:', error);
+      }
+    }
+  }, []);
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
@@ -81,7 +95,7 @@ const App: React.FC = () => {
                   textAlign: 'left',
                   padding: '0px 10px',
                 }}>
-                {'askdlfjsl'}
+                {vehicleInfo?.name}
               </span>
             </>
           )}
