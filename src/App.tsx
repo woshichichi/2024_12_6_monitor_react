@@ -67,6 +67,7 @@ const App: React.FC = () => {
             </div>
           ) : (
             <>
+            //
               <img
                 src={playerImg}
                 alt=""
