@@ -63,6 +63,7 @@ const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
       bMobile: isOnMobile,
       iBufferTime: isOnMobile ? 1000 : 3000,
     });
+    
     plugin.current.JS_SetWindowControlCallback({
       firstFrameDisplay: (index: number, width: number, height: number) => {
         setFlags((prevFlags) => ({
