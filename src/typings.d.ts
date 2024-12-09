@@ -26,6 +26,143 @@ declare global {
   }
 }
 declare const mqtt: any;
+type RuleList = {
+  [x: string]: any;
+  employeeName(employeeName: any): unknown;
+  employeeId(employeeId: any): unknown;
+  roles: any;
+  pageToken: SetStateAction<string>;
+  map(arg0: (node: any) => any): unknown;
+  treeDataWithExpanded(treeDataWithExpanded: any): unknown;
+  pageIndex: number;
+  totalCount: any;
+  rows: any;
+  data?: any;
+  /** 列表的内容总数 */
+  total?: number;
+  success?: boolean;
+  code?: number;
+  rows?: number;
+};
+declare namespace API {
+  type CurrentUser = {
+    name?: string;
+    nickName: string;
+    avatar?: string;
+    userid?: string;
+    account?: string;
+    email?: string;
+    signature?: string;
+    title?: string;
+    id?: any;
+    group?: string;
+    tags?: { key?: string; label?: string }[];
+    notifyCount?: number;
+    unreadCount?: number;
+    country?: string;
+    access?: string;
+    geographic?: {
+      province?: { label?: string; key?: string };
+      city?: { label?: string; key?: string };
+    };
+    address?: string;
+    phone?: string;
+    roles?: [
+      {
+        id: number;
+      },
+    ];
+  };
+
+  // type LoginResult = {
+  //   status?: string;
+  //   type?: string;
+  //   currentAuthority?: string;
+  // };
+
+  type PageParams = {
+    current?: number;
+    pageSize?: number;
+  };
+
+  type RuleListItem<T = any> = {
+    children?: any;
+    code(code: any): unknown;
+    beginDate?: string;
+    expireTime?: string;
+    success?: any;
+    id?: number;
+    data?: any;
+    accountFlag?: boolean;
+    name?: string;
+  };
+
+  type TenantCreate = {
+    // name: string;
+    // telephone: string;
+    // email: string;
+    // officialWebsite: string;
+    // code: string;
+    // beginDate: string;
+    // expireTime: string;
+    // enabled: string;
+  };
+
+  type RuleList = {
+    [x: string]: any;
+    employeeName(employeeName: any): unknown;
+    employeeId(employeeId: any): unknown;
+    roles: any;
+    pageToken: SetStateAction<string>;
+    map(arg0: (node: any) => any): unknown;
+    treeDataWithExpanded(treeDataWithExpanded: any): unknown;
+    pageIndex: number;
+    totalCount: any;
+    rows: any;
+    data?: any;
+    /** 列表的内容总数 */
+    total?: number;
+    success?: boolean;
+    code?: number;
+    rows?: number;
+  };
+
+  type FakeCaptcha = {
+    code?: number;
+    status?: string;
+  };
+
+  type ErrorResponse = {
+    /** 业务约定的错误码 */
+    errorCode: string;
+    /** 业务上的错误信息 */
+    errorMessage?: string;
+    /** 业务上的请求是否成功 */
+    success?: boolean;
+  };
+
+  type NoticeIconList = {
+    data?: NoticeIconItem[];
+    /** 列表的内容总数 */
+    total?: number;
+    success?: boolean;
+  };
+
+  type NoticeIconItemType = 'notification' | 'message' | 'event';
+
+  type NoticeIconItem = {
+    id?: string;
+    extra?: string;
+    key?: string;
+    read?: boolean;
+    avatar?: string;
+    title?: string;
+    status?: string;
+    datetime?: string;
+    description?: string;
+    type?: NoticeIconItemType;
+  };
+}
 
 // define typings for env variables
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;

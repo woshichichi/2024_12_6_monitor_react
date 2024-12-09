@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const requestMonitorDetail = async () => {
     try {
       const response = await getMonitorDetail({ uid: vehicleInfo?.uid });
+      setVideoSrc(response.data.url);
       // 处理返回的数据
       console.log(response);
       // 可以设置到 state 中

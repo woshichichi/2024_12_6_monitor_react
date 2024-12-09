@@ -15,16 +15,28 @@ export interface API {
 }
 
 // 获取监控详情
-export async function getMonitorDetail(params: object, options?: object) {
-  return api.get<API["RuleList"]>(
-    `http://127.0.0.1:4523/m1/3284777-0-default/monitors/detail/cc`,
-    {
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
+// export async function getMonitorDetail(params: object, options?: object) {
+//   return api.get<API["RuleList"]>(
+//     `http://127.0.0.1:4523/m1/3284777-0-default/monitors/detail/cc`,
+//     {
+//       params: {
+//         ...params,
+//       },
+//       ...(options || {}),
+//     }
+//   );
+// }
+export async function getMonitorDetail(
+  params: object,
+  options?: { [key: string]: any },
+) {
+  return api.get<API.RuleList>('http://127.0.0.1:4523/m1/3284777-0-default/monitors/detail/cc', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
 }
 
 export async function monitorPreview(params: object, options?: object) {
