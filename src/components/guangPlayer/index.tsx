@@ -3,7 +3,7 @@ import imgUrl from '../../assets/Frame.png';
 import guang from './byskplayer';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
-import './index.less'; // Assuming you have some CSS for styling
+import './index.css'; // Assuming you have some CSS for styling
 
 export interface VideoOptions {
   height?: number | string;
