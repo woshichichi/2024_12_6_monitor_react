@@ -59,7 +59,6 @@ const App: React.FC = () => {
   }, [videoState]);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <div
         style={{
           width: '50%',
@@ -181,8 +180,6 @@ const App: React.FC = () => {
         )}
       </div>
 
-
-    </div>
   );
 };
 
