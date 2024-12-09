@@ -117,6 +117,7 @@ const GuangPlayer: React.FC<VideoOptions> = ({
       return;
     }
     playerRef.current = player;
+    console.log(playerRef.current, 'playerRef.current');
     handleOpen();
   };
 

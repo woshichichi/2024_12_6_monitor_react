@@ -129,8 +129,22 @@ const App: React.FC = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  requestMonitorDetail();
-                  togglePlay();
+                  // requestMonitorDetail();
+                  // togglePlay();
+                  monitorPreview({ uid: vehicleInfo?.uid })
+                    .then((response) => {
+                      if (response.data.manufacturer === 'GuangDa') {
+                        setVideoSrc(response.data.url);
+                        setCameraInfo(response.data);
+                        togglePlay();
+                      } else if (response.data.url && response.data.url.trim() !== '') {
+                        setVideoSrc(response.data.url);
+                        setCameraInfo(response.data);
+                        togglePlay();
+                      } else {
+                        // message.error('暂无监控视频');
+                      }
+                    })
                   // monitorPreview({ uid: '浙DS1388_1' }).then((response: any) => {
                   //   setVideoSrc(response.data.url);
                   //   togglePlay();
