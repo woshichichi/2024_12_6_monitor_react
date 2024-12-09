@@ -99,7 +99,7 @@ const App: React.FC = () => {
                 onClick={() => {
                   // requestMonitorDetail();
                   // togglePlay();
-                  monitorPreview({ uid: '浙DS1388_2' }).then((response: any) => {
+                  monitorPreview({ uid: '浙DS1388_1' }).then((response: any) => {
                     setVideoSrc(response.data.url);
                     togglePlay();
                   });
