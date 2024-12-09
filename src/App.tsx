@@ -71,15 +71,15 @@ const App: React.FC = () => {
                   />
                 ) :
                   (
-                    // <HikH5Player
-                    //   options={{
-                    //     url: videoSrc,
-                    //     border: '#fff',
-                    //   }}
-                    // />
-                    <MpegtsVideo
-                      url={videoSrc}
+                    <HikH5Player
+                      options={{
+                        url: videoSrc,
+                        border: '#fff',
+                      }}
                     />
+                    // <MpegtsVideo
+                    //   url={videoSrc}
+                    // />
                   )
               }
 
@@ -97,12 +97,12 @@ const App: React.FC = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  // requestMonitorDetail();
-                  // togglePlay();
-                  monitorPreview({ uid: '浙DS1388_1' }).then((response: any) => {
-                    setVideoSrc(response.data.url);
-                    togglePlay();
-                  });
+                  requestMonitorDetail();
+                  togglePlay();
+                  // monitorPreview({ uid: '浙DS1388_1' }).then((response: any) => {
+                  //   setVideoSrc(response.data.url);
+                  //   togglePlay();
+                  // });
                 }}
               />
               <span
