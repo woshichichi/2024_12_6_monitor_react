@@ -97,6 +97,7 @@ const App: React.FC = () => {
                   color: '#fff',
                   textAlign: 'left',
                   padding: '0px 10px',
+                  fontSize: '12px',
                 }}>
                 {vehicleInfo?.name}
               </span>
