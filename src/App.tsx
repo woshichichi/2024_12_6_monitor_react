@@ -67,7 +67,6 @@ const App: React.FC = () => {
             </div>
           ) : (
             <>
-            //
               <img
                 src={playerImg}
                 alt=""
@@ -84,14 +83,12 @@ const App: React.FC = () => {
                 }}
               />
               <span
-              //
                 style={{
                   position: 'absolute',
                   left: '0',
                   bottom: '0',
                   width: '100%',
                   height: '42px',
-                  //
                   lineHeight: '42px',
                   backgroundColor: 'rgba(255, 255, 255, 0.30)',
                   color: '#fff',
