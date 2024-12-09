@@ -97,7 +97,8 @@ const MpegtsVideo: React.FC<VideoOptions> = ({
 
       playerRef.current = player;
 
-      (player.play() as Promise<void>)
+      player
+        .play()
         .then(() => {
           console.log('播放成功');
         })
