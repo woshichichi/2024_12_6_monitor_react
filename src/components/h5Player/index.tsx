@@ -2,8 +2,7 @@
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css'; // 将样式移到单独的CSS文件中
-import imgUrl from '../../assets/Frame.png';
-import VConsole from 'vconsole';
+import imgUrl from '@/assets/Frame.png';
 
 interface HikH5PlayerProps {
   options: {
@@ -20,13 +19,6 @@ interface Flags {
   isPlaying: boolean;
 }
 
-const isMobile = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
-};
-
-const vConsole = new VConsole();
 const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
   const id = 'hik_' + nanoid(8);
   const [flags, setFlags] = useState<Flags>({
@@ -37,7 +29,6 @@ const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
   const plugin = useRef<any>(null);
 
   useEffect(() => {
-    console.log('options', options);
     createPlugin(options.border ?? 'red');
   }, []);
 
@@ -48,22 +39,13 @@ const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
   }, [options.url]);
 
   const createPlugin = (border: string) => {
-    // alert('isMobile: ' + isMobile());
-    console.log('isMobile: ' + isMobile());
-    const isOnMobile = isMobile();
-    
     plugin.current = new JSPlugin({
       szId: id,
       szBasePath: '/vendor',
       bSupporDoubleClickFull: true,
       openDebug: true,
       oStyle: { borderSelect: border },
-      iHardDecode: isOnMobile ? 1 : 0,
-      bNoPlugin: isOnMobile,
-      bMobile: isOnMobile,
-      iBufferTime: isOnMobile ? 1000 : 3000,
     });
-    
     plugin.current.JS_SetWindowControlCallback({
       firstFrameDisplay: (index: number, width: number, height: number) => {
         setFlags((prevFlags) => ({
@@ -85,22 +67,12 @@ const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
       isLoading: true,
       isPlaying: true,
     }));
-    
     if (!plugin.current || !url) {
       return;
     }
-
-    const playParams = {
-      playURL: url,
-      mode: 0,
-      bZeroChannel: false,
-      bDirectFirst: isMobile(),
-      iBufferTime: isMobile() ? 1000 : 3000,
-    };
-
-    plugin.current.JS_Play(url, playParams, index ?? 0).then(
+    plugin.current.JS_Play(url, { playURL: url, mode: 0 }, index ?? 0).then(
       () => onEvent?.('PLAY'),
-      (err: string) => handleError(err)
+      (err: string) => handleError(err),
     );
   };
 
@@ -164,7 +136,6 @@ const HikH5Player: React.FC<HikH5PlayerProps> = ({ options, onEvent }) => {
   };
 
   const handleError = (errCode: string) => {
-    // alert('errCode: ' + errCode);
     const errInfo: { [key: string]: string } = {
       '0x12f900001': '参数错误',
       '0x12f900008': '播放链接格式错误',
