@@ -3,6 +3,7 @@ import HikH5Player from './components/h5Player';
 import playerImg from './assets/player.png';
 import { monitorPreview } from './services/monitorService';
 import MpegtsVideo from './components/MpegtsVideo';
+import GuangPlayer from './components/guangPlayer';
 
 const App: React.FC = () => {
   // const videoSrc2 = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/5qVITJe';
@@ -12,10 +13,12 @@ const App: React.FC = () => {
   };
   const [vehicleInfo, setVehicleInfo] = useState<any>(null);
   const [videoSrc, setVideoSrc] = useState<string>('');
+  const [cameraInfo, setCameraInfo] = useState<any>(null);
 
   const requestMonitorDetail = async () => {
     try {
       const response = await monitorPreview({ uid: vehicleInfo?.uid });
+      setCameraInfo(response.data);
       // const response = await monitorPreview({ uid: 'vehicleInfo?.uid' });
       setVideoSrc(response.data.url);
       // 处理返回的数据
@@ -73,14 +76,32 @@ const App: React.FC = () => {
                     url={videoSrc}
                   />
                 ) :
-                  (
-                    <HikH5Player
-                      options={{
-                        url: videoSrc,
-                        border: '#fff',
-                      }}
-                    />
-                  )
+                  vehicleInfo?.manufacturer === 'GuangDa' ?
+                    (
+                      <GuangPlayer
+                        // url={videoStates[item.uid].url}
+                        // userKey={cameraInfo?.userKey || '19ac88da-33bc-4ce9-a3a1-63ec2bc8d2ff'}
+                        // 返回"url": "wss://plugvideo.vocsystem.cn:4443_19ac88da-33bc-4ce9-a3a1-63ec2bc8d2ff",取_后面部分
+                        userKey={cameraInfo?.url?.split('_')[1]}
+                        baseURL={cameraInfo?.url?.split('_')[0]}
+                        userId={cameraInfo?.userId || 'apitest'}
+                        device={cameraInfo?.uid?.split('_')[0]}
+                        channel={cameraInfo?.uid?.split('_')[1]}
+                        protocolType={cameraInfo?.protocolType || 1}
+                        SpecialSign={cameraInfo?.SpecialSign || 1}
+                        plate={cameraInfo?.name}
+                        vehicleId={cameraInfo?.vehicleId || '4321'}
+                        groupId={cameraInfo?.groupId || '2'}
+                      />
+                    ) :
+                    (
+                      <HikH5Player
+                        options={{
+                          url: videoSrc,
+                          border: '#fff',
+                        }}
+                      />
+                    )
               }
 
             </div>
