@@ -6,7 +6,7 @@ import MpegtsVideo from './components/MpegtsVideo';
 
 const App: React.FC = () => {
   // const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
-  const videoSrc = 'wss://yuyin6.gpskk.com:8084/?sessionKey=0066dc6ac67a497fa5e1737ff7939529';
+  const videoSrc = 'wss://yuyin4.gpskk.com:8084/?sessionKey=5ec92d65b319409d835c78a434070375';
   const [videoState, setVideoState] = useState<boolean>(false);
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
