@@ -1,6 +1,5 @@
 import imgUrl from '../../assets/Frame.png';
-// @ts-ignore
-import guang from './byskplayer.js';
+import guang from 'byskplayer';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css'; // Assuming you have some CSS for styling
@@ -114,6 +113,9 @@ const GuangPlayer: React.FC<VideoOptions> = ({
     }
     console.log(params, 'params');
     const player = new guang(params);
+    if(!player._app){
+      return;
+    }
     playerRef.current = player;
     handleOpen();
   };

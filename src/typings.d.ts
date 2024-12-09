@@ -18,6 +18,7 @@ declare module 'mockjs';
 declare module 'react-fittext';
 declare module 'bizcharts-plugin-slider';
 declare module '@/assets/mqtt/mqtt.min.js';
+declare module 'byskplayer'
 
 declare const JSPlugin: any;
 declare global {

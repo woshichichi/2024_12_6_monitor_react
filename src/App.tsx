@@ -47,6 +47,17 @@ const App: React.FC = () => {
     console.log(vehicleInfo, 'vehicleInfo');
   }, [vehicleInfo]);
 
+  useEffect(() => {
+    console.log(cameraInfo, 'cameraInfo');
+    const url = cameraInfo?.url?.split('_')[1]
+    const baseURL = cameraInfo?.url?.split('_')[0]
+    console.log(url, baseURL, 'url, baseURL');
+  }, [cameraInfo]);
+
+  useEffect(() => {
+    console.log(videoState, 'videoState');
+  }, [videoState]);
+
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h1>React + TypeScript Demo</h1>
