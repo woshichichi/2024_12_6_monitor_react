@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HikH5Player from './components/h5Player';
 import playerImg from './assets/player.png';
 import { getMonitorDetail } from './services/monitorService';
+import MpegtsVideo from './components/MpegtsVideo';
 
 const App: React.FC = () => {
   const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
