@@ -27,6 +27,18 @@ export async function getMonitorDetail(params: object, options?: object) {
   );
 }
 
+export async function monitorPreview(params: object, options?: object) {
+  return api.get<API["RuleList"]>(
+    `/camera/preview2`,
+    {
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
 // 获取所有监控
 export async function getAllMonitors(
   params?: object,

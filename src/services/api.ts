@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 创建 axios 实例
 const api = axios.create({
-    baseURL: 'http://localhost:8080', // 替换为实际的后端 API 地址
+    baseURL: '/api/paas', // 替换为实际的后端 API 地址
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
@@ -10,19 +10,19 @@ const api = axios.create({
 });
 
 // 请求拦截器
-// api.interceptors.request.use(
-//     (config) => {
-//         // 在这里可以添加认证信息，如 token
-//         const token = localStorage.getItem('token');
-//         if (token) {
-//             config.headers.Authorization = `Bearer ${token}`;
-//         }
-//         return config;
-//     },
-//     (error) => {
-//         return Promise.reject(error);
-//     }
-// );
+// 请求拦截器
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token_value'); // 从 localStorage 中获取 token
+        if (token) {
+            config.headers.Authorization = 'Bearer ' + token; // 设置 Authorization 头
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 // 响应拦截器
 api.interceptors.response.use(

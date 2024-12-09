@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import HikH5Player from './components/h5Player';
 import playerImg from './assets/player.png';
-import { getMonitorDetail } from './services/monitorService';
+import { getMonitorDetail, monitorPreview } from './services/monitorService';
 import MpegtsVideo from './components/MpegtsVideo';
 
 const App: React.FC = () => {
   // const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
-  const videoSrc = 'wss://yuyin4.gpskk.com:8084/?sessionKey=5ec92d65b319409d835c78a434070375';
+  // const videoSrc = 'wss://yuyin4.gpskk.com:8084/?sessionKey=5ec92d65b319409d835c78a434070375';
   const [videoState, setVideoState] = useState<boolean>(false);
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
   };
   const [vehicleInfo, setVehicleInfo] = useState<any>(null);
+  const [videoSrc, setVideoSrc] = useState<string>('');
 
   const requestMonitorDetail = async () => {
     try {
@@ -96,8 +97,12 @@ const App: React.FC = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  requestMonitorDetail();
-                  togglePlay();
+                  // requestMonitorDetail();
+                  // togglePlay();
+                  monitorPreview({ uid: '浙DS1388_2' }).then((response: any) => {
+                    setVideoSrc(response.data.url);
+                    togglePlay();
+                  });
                 }}
               />
               <span
