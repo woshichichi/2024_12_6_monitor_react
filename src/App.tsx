@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import HikH5Player from './components/h5Player';
 import playerImg from './assets/player.png';
-import { getMonitorDetail, monitorPreview } from './services/monitorService';
+import { monitorPreview } from './services/monitorService';
 import MpegtsVideo from './components/MpegtsVideo';
 
 const App: React.FC = () => {
+  // const videoSrc2 = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/5qVITJe';
   const [videoState, setVideoState] = useState<boolean>(false);
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
@@ -39,9 +40,6 @@ const App: React.FC = () => {
       }
     }
   }, []);
-  // useEffect(() => {
-  //   localStorage.setItem('token_value', 'ZPPQ9aBS0HXyFc260Bk9iqBgD7H7rZyI6hhzLryOBECxgoaOTiYKcQv300fu39ToO1cjlpuphEfhpUzySCp5WYFCBsGjUv7EZWegma8olXuNt5BrtNUF78XH8DPrLUyi');
-  // }, []);
   useEffect(() => {
     console.log(vehicleInfo, 'vehicleInfo');
   }, [vehicleInfo]);
@@ -82,9 +80,6 @@ const App: React.FC = () => {
                         border: '#fff',
                       }}
                     />
-                    // <MpegtsVideo
-                    //   url={videoSrc}
-                    // />
                   )
               }
 
