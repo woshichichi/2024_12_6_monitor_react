@@ -38,18 +38,25 @@ const MpegtsVideo: React.FC<VideoOptions> = ({
 
   const handlePlayError = (error: any) => {
     let errorMsg = '未知的错误';
-    switch (error) {
-      case mpegts.ErrorTypes.NETWORK_ERROR:
-        errorMsg = '网络错误';
-        break;
-      case mpegts.ErrorTypes.MEDIA_ERROR:
-        errorMsg = '媒体错误';
-        break;
-      case mpegts.ErrorTypes.OTHER_ERROR:
-        errorMsg = '其他错误';
-        break;
-      default:
-        errorMsg = '未知的错误';
+    if (error.name === 'NotSupportedError') {
+      errorMsg = '不支持的视频格式或源';
+    } else if (error.name === 'AbortError') {
+      // Don't show error for abort errors (caused by pause)
+      return;
+    } else {
+      switch (error) {
+        case mpegts.ErrorTypes.NETWORK_ERROR:
+          errorMsg = '网络错误';
+          break;
+        case mpegts.ErrorTypes.MEDIA_ERROR:
+          errorMsg = '媒体错误';
+          break;
+        case mpegts.ErrorTypes.OTHER_ERROR:
+          errorMsg = '其他错误';
+          break;
+        default:
+          errorMsg = '未知的错误';
+      }
     }
     setFlags({ isLoading: false, error: errorMsg });
     console.error('Player Error:', error);
@@ -63,6 +70,7 @@ const MpegtsVideo: React.FC<VideoOptions> = ({
   const initPlayer = () => {
     setFlags({ isLoading: true, error: '' });
     if (mpegts.getFeatureList().mseLivePlayback && videoRef.current) {
+      console.log(url, 'url111');
       const mediaDataSource = {
         autoCleanupSourceBuffer: true,
         autoCleanupMaxBackwardDuration: 10,
@@ -97,14 +105,24 @@ const MpegtsVideo: React.FC<VideoOptions> = ({
 
       playerRef.current = player;
 
-      player
-        .play()
-        .then(() => {
-          console.log('播放成功');
-        })
-        .catch((error: Error) => {
-          handlePlayError(error);
-        });
+      // Fix the play() promise handling
+      try {
+        const playPromise = player.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('播放成功');
+            })
+            .catch((error: Error) => {
+              // Only handle errors that aren't related to pause interruption
+              if (error.name !== 'AbortError') {
+                handlePlayError(error);
+              }
+            });
+        }
+      } catch (error) {
+        handlePlayError(error);
+      }
     } else {
       console.error(
         'MSE Live Playback is not supported or video element is not available',

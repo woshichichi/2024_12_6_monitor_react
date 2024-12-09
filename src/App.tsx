@@ -70,11 +70,14 @@ const App: React.FC = () => {
                   />
                 ) :
                   (
-                    <HikH5Player
-                      options={{
-                        url: videoSrc,
-                        border: '#fff',
-                      }}
+                    // <HikH5Player
+                    //   options={{
+                    //     url: videoSrc,
+                    //     border: '#fff',
+                    //   }}
+                    // />
+                    <MpegtsVideo
+                      url={videoSrc}
                     />
                   )
               }
