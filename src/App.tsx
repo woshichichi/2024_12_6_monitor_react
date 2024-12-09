@@ -47,8 +47,8 @@ const App: React.FC = () => {
   return (
       <div
         style={{
-          width: '50%',
-          height: '450px',
+          width: '100vw',
+          height: '100vh',  
           backgroundColor: '#000',
           display: 'flex',
           justifyContent: 'center',
