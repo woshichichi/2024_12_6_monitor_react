@@ -7,7 +7,7 @@ import MpegtsVideo from './components/MpegtsVideo';
 const App: React.FC = () => {
   // const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
   // const videoSrc = 'wss://yuyin4.gpskk.com:8084/?sessionKey=5ec92d65b319409d835c78a434070375';
-  const videoSrc2 = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/xZZyKRi';
+  const videoSrc2 = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/MdTawTK';
   const [videoState, setVideoState] = useState<boolean>(false);
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
@@ -17,10 +17,11 @@ const App: React.FC = () => {
 
   const requestMonitorDetail = async () => {
     try {
-      const response = await getMonitorDetail({ uid: vehicleInfo?.uid });
-      setVideoSrc(response.data.url);
+      // const response = await monitorPreview({ uid: vehicleInfo?.uid });
+      // const response = await monitorPreview({ uid: 'vehicleInfo?.uid' });
+      // setVideoSrc(response.data.url);
       // 处理返回的数据
-      console.log(response);
+      // console.log(response);
       // 可以设置到 state 中
     } catch (error) {
       console.error('获取监控详情失败:', error);
@@ -34,10 +35,14 @@ const App: React.FC = () => {
       try {
         const parsedData = JSON.parse(decodeURIComponent(data));
         setVehicleInfo(parsedData);
+        
       } catch (error) {
         console.error('解析数据失败:', error);
       }
     }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('token_value', 'ZPPQ9aBS0HXyFc260Bk9iqBgD7H7rZyI6hhzLryOBECxgoaOTiYKcQv300fu39ToO1cjlpuphEfhpUzySCp5WYFCBsGjUv7EZWegma8olXuNt5BrtNUF78XH8DPrLUyi');
   }, []);
   useEffect(() => {
     console.log(vehicleInfo, 'vehicleInfo');

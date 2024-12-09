@@ -38,18 +38,30 @@ export async function getMonitorDetail(
     ...(options || {}),
   });
 }
-
-export async function monitorPreview(params: object, options?: object) {
-  return api.get<API["RuleList"]>(
-    `/camera/preview2`,
-    {
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
+export async function monitorPreview(
+  params: object,
+  options?: { [key: string]: any },
+) {
+  return api.get<API.RuleList>('/camera/preview2', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
 }
+
+// export async function monitorPreview(params: object, options?: object) {
+//   return api.get<API["RuleList"]>(
+//     `/camera/preview2`,
+//     {
+//       params: {
+//         ...params,
+//       },
+//       ...(options || {}),
+//     }
+//   );
+// }
 
 // 获取所有监控
 export async function getAllMonitors(
