@@ -71,7 +71,7 @@ const App: React.FC = () => {
           position: 'relative',
         }}>
         {videoState ? (
-          <div style={{ width: '100%', height: '450px' }} onClick={() => { }}>
+          <div style={{ width: '100%', height: '100%' }} onClick={() => { }}>
             {
               vehicleInfo?.manufacturer === 'StarSoft' ? (
                 <MpegtsVideo
