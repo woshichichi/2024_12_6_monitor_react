@@ -134,7 +134,7 @@ const GuangPlayer: React.FC<VideoOptions> = ({
       initPlayer();
     }
     return () => {
-      destroyPlayer();
+      // destroyPlayer();
     };
   }, [type, isLive, videoRef]);
 
