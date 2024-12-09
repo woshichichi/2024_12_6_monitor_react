@@ -14,20 +14,6 @@ const App: React.FC = () => {
   const [vehicleInfo, setVehicleInfo] = useState<any>(null);
   const [videoSrc, setVideoSrc] = useState<string>('');
   const [cameraInfo, setCameraInfo] = useState<any>(null);
-
-  const requestMonitorDetail = async () => {
-    try {
-      const response = await monitorPreview({ uid: vehicleInfo?.uid });
-      setCameraInfo(response.data);
-      // const response = await monitorPreview({ uid: 'vehicleInfo?.uid' });
-      setVideoSrc(response.data.url);
-      // 处理返回的数据
-      console.log(response);
-      // 可以设置到 state 中
-    } catch (error) {
-      console.error('获取监控详情失败:', error);
-    }
-  };
   useEffect(() => {
     // 从 URL 中解析参数
     const params = new URLSearchParams(window.location.search);
