@@ -1,4 +1,4 @@
-import imgUrl from '@/assets/Frame.png';
+import imgUrl from '../../assets/Frame.png';
 import mpegts from 'mpegts.js';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
