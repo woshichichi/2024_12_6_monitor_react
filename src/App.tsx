@@ -58,12 +58,22 @@ const App: React.FC = () => {
           }}>
           {videoState ? (
             <div style={{ width: '100%', height: '450px' }} onClick={() => { }}>
-              <HikH5Player
-                options={{
-                  url: videoSrc,
-                  border: '#fff',
-                }}
-              />
+              {
+                vehicleInfo?.manufacturer === 'StarSoft' ? (
+                  <MpegtsVideo
+                    url={videoSrc}
+                  />
+                ) :
+                  (
+                    <HikH5Player
+                      options={{
+                        url: videoSrc,
+                        border: '#fff',
+                      }}
+                    />
+                  )
+              }
+
             </div>
           ) : (
             <>
