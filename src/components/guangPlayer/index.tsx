@@ -130,11 +130,13 @@ const GuangPlayer: React.FC<VideoOptions> = ({
 
   useEffect(() => {
     console.log('initPlayer222');
-    initPlayer();
+    if (videoRef.current) {
+      initPlayer();
+    }
     return () => {
-      destroyPlayer();
+      // destroyPlayer();
     };
-  }, [type, isLive]);
+  }, [type, isLive, videoRef]);
 
   useEffect(() => {
     if (playerRef.current && onPlay) {
