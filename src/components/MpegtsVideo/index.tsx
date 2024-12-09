@@ -72,28 +72,22 @@ const MpegtsVideo: React.FC<VideoOptions> = ({
     if (mpegts.getFeatureList().mseLivePlayback && videoRef.current) {
       console.log(url, 'url111');
       const mediaDataSource = {
-        autoCleanupSourceBuffer: true,
-        autoCleanupMaxBackwardDuration: 10,
-        hasAudio: false,
-        type: type,
+        type: 'flv',
         isLive: isLive,
         url: url,
+        hasAudio: true,
+        hasVideo: true,
+        cors: true,
       };
+      console.log('Supported features:', mpegts.getFeatureList());
+      console.log('MediaDataSource:', mediaDataSource);
       const player = mpegts.createPlayer(mediaDataSource, {
+        enableWorker: true,
+        enableStashBuffer: true,
+        stashInitialSize: 1024 * 64,
         lazyLoad: false,
-        enableStashBuffer: false,
-        lazyLoadMaxDuration: 0.2,
-        lazyLoadRecoverDuration: 10,
-        // enableWorker: false,
-        // enableStashBuffer: false,
-        // liveBufferLatencyChasing: true,
-        // reuseRedirectedURL: true,
-        // lazyLoad: false,
-        // deferLoadAfterSourceOpen: false,
-        // stashInitialSize: 384,
-        // autoCleanupSourceBuffer: true,
-        // autoCleanupMinBackwardDuration: 30,
-        // autoCleanupMaxBackwardDuration: 60,
+        lazyLoadMaxDuration: 0,
+        seekType: 'range',
       });
 
       player.attachMediaElement(videoRef.current);
