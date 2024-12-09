@@ -1,6 +1,6 @@
 import imgUrl from '../../assets/Frame.png';
 // @ts-ignore
-import guang from './byskplayer';
+import guang from './byskplayer.js';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css'; // Assuming you have some CSS for styling
