@@ -11,9 +11,9 @@ const App: React.FC = () => {
   };
   const [vehicleInfo, setVehicleInfo] = useState<any>(null);
 
-  const requestMonitorDetail = async (id: number) => {
+  const requestMonitorDetail = async () => {
     try {
-      const response = await getMonitorDetail({ id });
+      const response = await getMonitorDetail({ uid: vehicleInfo?.uid });
       // 处理返回的数据
       console.log(response);
       // 可以设置到 state 中
@@ -79,7 +79,7 @@ const App: React.FC = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => {
-                  requestMonitorDetail(1);
+                  requestMonitorDetail();
                   togglePlay();
                 }}
               />
