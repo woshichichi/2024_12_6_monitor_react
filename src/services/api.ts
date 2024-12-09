@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 创建 axios 实例
 const api = axios.create({
-    baseURL: '/api/paas', // 替换为实际的后端 API 地址
+    baseURL: '/api/ljfl', // 替换为实际的后端 API 地址
     timeout: 30000, // 设置超时时间为 30 秒
     headers: {
         'Content-Type': 'application/json',

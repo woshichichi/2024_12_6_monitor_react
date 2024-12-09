@@ -32,15 +32,16 @@ const App: React.FC = () => {
       try {
         const parsedData = JSON.parse(decodeURIComponent(data));
         setVehicleInfo(parsedData);
+        localStorage.setItem('token_value', parsedData.token);
 
       } catch (error) {
         console.error('解析数据失败:', error);
       }
     }
   }, []);
-  useEffect(() => {
-    localStorage.setItem('token_value', 'ZPPQ9aBS0HXyFc260Bk9iqBgD7H7rZyI6hhzLryOBECxgoaOTiYKcQv300fu39ToO1cjlpuphEfhpUzySCp5WYFCBsGjUv7EZWegma8olXuNt5BrtNUF78XH8DPrLUyi');
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem('token_value', 'ZPPQ9aBS0HXyFc260Bk9iqBgD7H7rZyI6hhzLryOBECxgoaOTiYKcQv300fu39ToO1cjlpuphEfhpUzySCp5WYFCBsGjUv7EZWegma8olXuNt5BrtNUF78XH8DPrLUyi');
+  // }, []);
   useEffect(() => {
     console.log(vehicleInfo, 'vehicleInfo');
   }, [vehicleInfo]);

@@ -42,7 +42,7 @@ export async function monitorPreview(
   params: object,
   options?: { [key: string]: any },
 ) {
-  return api.get<API.RuleList>('/camera/preview2', {
+  return api.get<API.RuleList>('/camera/road/preview2', {
     method: 'GET',
     params: {
       ...params,
