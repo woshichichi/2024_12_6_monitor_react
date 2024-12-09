@@ -5,7 +5,8 @@ import { getMonitorDetail } from './services/monitorService';
 import MpegtsVideo from './components/MpegtsVideo';
 
 const App: React.FC = () => {
-  const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
+  // const videoSrc = 'wss://isecure.yqhj.cn:6014/proxy/172.168.110.192:559/openUrl/lhkyzWo';
+  const videoSrc = 'wss://yuyin6.gpskk.com:8084/?sessionKey=0066dc6ac67a497fa5e1737ff7939529';
   const [videoState, setVideoState] = useState<boolean>(false);
   const togglePlay = () => {
     setVideoState((prevState) => !prevState);
@@ -35,6 +36,9 @@ const App: React.FC = () => {
       }
     }
   }, []);
+  useEffect(() => {
+    console.log(vehicleInfo, 'vehicleInfo');
+  }, [vehicleInfo]);
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
