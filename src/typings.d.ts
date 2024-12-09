@@ -168,3 +168,4 @@ declare namespace API {
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
 declare const MQTT_CONFIG: any;
 declare const API_DOMAIN_CUSTOM: string;
+

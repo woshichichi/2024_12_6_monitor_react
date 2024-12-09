@@ -1,4 +1,5 @@
 import imgUrl from '../../assets/Frame.png';
+// @ts-ignore
 import guang from './byskplayer';
 import { nanoid } from 'nanoid';
 import React, { useEffect, useRef, useState } from 'react';
@@ -59,18 +60,18 @@ const GuangPlayer: React.FC<VideoOptions> = ({
 }) => {
   const [id] = useState(() => nanoid(8));
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playerRef = useRef(null);
+  const playerRef = useRef<any>(null);
   const [flags, setFlags] = useState<Flags>({ isLoading: true, error: '' });
   // console.log(url, 'url');
 
   const handleOpen = () => {
 
-    const tidObj = playerRef.current.allocate(1) //根据通道数申请
+    const tidObj = playerRef.current?.allocate(1) //根据通道数申请
     console.log(tidObj, 'tidObj');
 
     if (tidObj.flag === 1) {
       //申请成功
-      let params = {
+      const params = {
         device: device, //终端号
         channel: channel, //通道号 （1~8）
         protocolType: protocolType, //协议类型，1：GF-1078，GB-1078; 2：GA系列
@@ -84,13 +85,13 @@ const GuangPlayer: React.FC<VideoOptions> = ({
       if (protocolType === 1) { //1078
         const tid = tidObj.ids[0]
         console.log(tid, params, 'tid', 'params222');
-        playerRef.current.real.open(tid, params, res => {
+        playerRef.current.real.open(tid, params, (res: any) => {
           console.log(res);
         });
       } else {
         const tid = tidObj.ids[0]
         console.log(tid, params, 'tid', 'params222');
-        playerRef.current.real.open(tid, params, res => {
+        playerRef.current.real.open(tid, params, (res: any) => {
           console.log(res);
         });
       }
